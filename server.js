@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const path = require('path') // part of nodejs
 
-const users = require("./routes/api/users");
-const posts = require("./routes/api/posts");
-const profile = require("./routes/api/profile");
+// const users = require("./routes/api/users");
+// const posts = require("./routes/api/posts");
+// const profile = require("./routes/api/dashboard");
 
 const app = express();
 
@@ -26,12 +26,14 @@ mongoose.connect(db, { useNewUrlParser: true })
 app.use(passport.initialize());
 
 // Passport Config
-require('./config/passport')(passport);
+// require('./config/passport')(passport);
 
 //Use Routes
-app.use('/api/users', users);
-app.use('/api/posts', posts);
-app.use('/api/profile', profile);
+
+// app.use('/api/users', users);
+// app.use('/api/posts', posts);
+// app.use('/api/profile', dashboard);
+
 // if none of these api routes are being hit, look for index
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {

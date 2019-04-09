@@ -1,5 +1,5 @@
 # OneMoreThing
-A web application that allows A user to post an article online.
+A web application that allows a user to post an article online.
 
 
 ## user stories. 

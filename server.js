@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const path = require('path') // part of nodejs
 
-// const users = require("./routes/api/users");
-// const posts = require("./routes/api/posts");
-// const profile = require("./routes/api/dashboard");
+const users = require("./routes/api/users");
+const posts = require("./routes/api/posts");
+const dashboard = require("./routes/api/dashboard");
 
 const app = express();
 
@@ -30,9 +30,9 @@ app.use(passport.initialize());
 
 //Use Routes
 
-// app.use('/api/users', users);
-// app.use('/api/posts', posts);
-// app.use('/api/profile', dashboard);
+app.use('/api/users', users);
+app.use('/api/posts', posts);
+app.use('/api/dashboard', dashboard);
 
 // if none of these api routes are being hit, look for index
 // Server static assets if in production

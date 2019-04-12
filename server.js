@@ -25,8 +25,8 @@ mongoose.connect(db, { useNewUrlParser: true })
 //Passport Middleware
 app.use(passport.initialize());
 
-// Passport Config
-// require('./config/passport')(passport);
+// Everything else we do with passport will be in Passport Config file
+require('./config/passport')(passport);
 
 //Use Routes
 

@@ -7,22 +7,28 @@ const keys = require('../../config/keys')
 const passport = require('passport')
 
 //Load Input Validation
-// const validateRegisterInput = require('../../validation/register');
-// const validateLoginInput = require("../../validation/login");
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require("../../validation/login");
 
 //load User model
 const User = require('../../models/User');
+
+//@route    GET api/users/test
+//@desc     gets a test message
+//@access   public
+router.get('/test', (request, response) => response.json({ msg: "Users Works" })
+);
 
 //@route    POST api/users/test
 //@desc     Register user
 //@access   public
 router.post('/register', (req, res) => {
-  // const { errors, isValid } = validateRegisterInput(req.body);
+  const { errors, isValid } = validateRegisterInput(req.body);
 
   // Check Validation if isValid is false isValid checks if its empty so if not empty
-  // if (!isValid) {
-  //   return res.status(400).json(errors); //status code 400 is bad request.
-  // }
+  if (!isValid) {
+    return res.status(400).json(errors); //status code 400 is bad request.
+  }
 
   User.findOne({ email: req.body.email })
     .then(user => {
@@ -68,12 +74,12 @@ router.post('/register', (req, res) => {
 //@desc     Login user/ returning JWT Token
 //@access   public
 router.post('/login', (req, res) => {
-  // const { errors, isValid } = validateLoginInput(req.body);
+  const { errors, isValid } = validateLoginInput(req.body);
 
-  // // Check Validation if isValid is false isValid checks if its empty so if not empty
-  // if (!isValid) {
-  //   return res.status(400).json(errors); //status code 400 is bad request.
-  // }
+  // Check Validation if isValid is false isValid checks if its empty so if not empty
+  if (!isValid) {
+    return res.status(400).json(errors); //status code 400 is bad request.
+  }
 
   const email = req.body.email;
   const password = req.body.password;

@@ -13,4 +13,5 @@ A web application that allows a user to post an article online.
 
 
 # Things to do:
-start working on Front end. 
+* basic layout
+* then react

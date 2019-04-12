@@ -5,7 +5,7 @@ const path = require('path') // part of nodejs
 
 const users = require("./routes/api/users");
 const posts = require("./routes/api/posts");
-const dashboard = require("./routes/api/dashboard");
+const profile = require("./routes/api/profile");
 
 const app = express();
 
@@ -32,7 +32,7 @@ require('./config/passport')(passport);
 
 app.use('/api/users', users);
 app.use('/api/posts', posts);
-app.use('/api/dashboard', dashboard);
+app.use('/api/profile', profile);
 
 // if none of these api routes are being hit, look for index
 // Server static assets if in production

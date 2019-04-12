@@ -18,6 +18,17 @@ const PostSchema = new Schema({
   img: {
     type: [String]
   },
+  views: {
+    type: Number
+  },
+  likes: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      }
+    }
+  ],
   date: {
     type: Date,
     default: Date.now

@@ -13,5 +13,4 @@ A web application that allows a user to post an article online.
 
 
 # Things to do:
-* basic layout
-* then react
+* just finished authorization need to test login and register

@@ -53,7 +53,7 @@ class Login extends Component {
     e.preventDefault();
 
     const userData = {
-      email: "wolfgang.truong@gmail.com",
+      email: "wolfgangtruong.code@gmail.com",
       password: "password"
     }
 

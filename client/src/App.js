@@ -21,8 +21,8 @@ class App extends Component {
             <Route exact path='/' component={Landing}/>
             {/* we put all other components in container because landing is the only component taht takes up the whole screen */}
             <div className="container">
-              <Route exact path='/register' component={Login}/>
-              <Route exact path='/login' component={Register}/>
+              <Route exact path='/register' component={Register}/>
+              <Route exact path='/login' component={Login}/>
             </div>
             <Footer />
           </div>

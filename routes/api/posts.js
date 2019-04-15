@@ -51,8 +51,33 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
 
 })
 
+//@route    POST api / posts
+//@desc     Update a post
+//@access   private
+router.post('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+  const { errors, isValid } = validatePostInput(req.body);
+
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    Post.findById(req.params.id)
+      .then(post => {
+        //validating post owner
+        if (post.user.toString() !== req.user.id) {
+          return res.status(401).json({ notauthorized: "User is not authorized" });
+        }
+        post.title= req.body.title;
+        post.body= req.body.body;
+        post.img= req.body.img;
+        post.save().then(post => res.json(post));
+      });
+    });
+})
+
 //@route    POST api/posts/:id
-//@desc     Creates a post
+//@desc     Delete a post
 //@access   private
 router.delete('/:id', passport.authenticate('jwt', {session:false}), (req,res) => {
   Profile.findOne({ user: req.user.id }).then(profile => {

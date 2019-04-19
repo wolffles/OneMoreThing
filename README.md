@@ -20,4 +20,4 @@ A web application that allows a user to post an article online.
 
 
 # Things to do:
-
+create the post routes for the profile 

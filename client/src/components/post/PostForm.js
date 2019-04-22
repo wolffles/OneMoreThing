@@ -11,6 +11,7 @@ class PostForm extends Component {
         this.state = {
             title: '',
             body: '',
+            profile_id:'',
             errors: {}
         };
 
@@ -34,10 +35,10 @@ class PostForm extends Component {
             body: this.state.body,
             name: user.name,
             avatar: user.avatar
+            profile_id: 
         };
 
-        this.props.addPost(newPost);
-        this.setState({ title: '' });
+        this.props.addPost(newPost, this.props.history);
     }
 
     onChange(e) {
@@ -45,12 +46,12 @@ class PostForm extends Component {
     }
 
     render() {
-        const { errors } = this.state;
+        const { errors, profile } = this.state;
 
         return (
             <div className="post-form mb-3">
                 <div className="card card-info">
-                    <div className="card-header bg-info text-white">Create a New post</div>
+                    <div className="card-header bg-info text-white">Create a New Post</div>
                     <div className="card-body">
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
@@ -85,12 +86,14 @@ class PostForm extends Component {
 PostForm.propTypes = {
     addPost: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired,
+    profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    errors: state.errors
+    errors: state.errors,
+    profile: state.profile
 });
 
 export default connect(mapStateToProps, { addPost })(PostForm);

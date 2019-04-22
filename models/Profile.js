@@ -1,25 +1,21 @@
 // Profile is a model for all of users activity and infomation.
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const ProfileSchema = new mongoose.Schema({
-  user: {
+  user: [{
     type: Schema.Types.ObjectId,
     ref: 'users'
-  },
+  }],
   handle: {
     type: String,
     required: true,
     max: 40
   },
-  posts: [
-    {
-      post: {
-        type: Schema.Types.ObjectId,
-        ref: 'posts'
-      }
-    }
-  ],
+  posts: [{
+      ref: 'posts',
+      type: Schema.Types.ObjectId
+    }],
   websites: [
     {
       name: {

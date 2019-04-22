@@ -20,6 +20,9 @@ A web application that allows a user to post an article online.
 
 
 # Things to do:
+
+* find a way to return the posts 
+* refactor
 create Front end for Dashboard to profiles. 
 * userlogin
   - action: to post

@@ -17,6 +17,12 @@ const UserSchema = new Schema({
   avatar: {
     type: String
   },
+  posts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'posts'
+    }
+  ],
   date: {
     type: Date,
     default: Date.now

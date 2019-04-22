@@ -71,12 +71,13 @@ router.post('/',
 );
 
 
-//@route    GET api/dasboard/
+//@route    GET api/profile/
 //@desc     gets current user's profile
 //@access   private
 router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   const errors = {};
   Profile.findOne({ user: req.user.id })
+    .populate('posts', {path: 'author'})
     .populate('user', ['name', 'avatar'])
     .then(profile => {
       if (!profile) {
@@ -117,6 +118,7 @@ router.get('/user/:user_id', (req, res) => {
 
   Profile.findOne({ user: req.params.user_id })
     .populate('user', ['name', 'avatar'])
+    .populate('posts')
     .then(profile => {
       if (!profile) {
         errors.noprofile = "There is no profile for this user"

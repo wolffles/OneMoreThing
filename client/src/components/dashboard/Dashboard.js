@@ -9,6 +9,8 @@ import { addPost, deletePost, getPosts, getPost} from '../../actions/postActions
 // import ProfileButtons from './ProfileButtons'
 // import Experience from './Experience'
 // import Education from './Education'
+import PostFeed from '../post/PostFeed'
+import createprofile from "../create-profile/CreateProfile"
 
 class Dashboard extends Component {
   componentDidMount(){
@@ -22,7 +24,8 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
-
+    console.log(profile)
+    console.log("user",user)
     let dashboardContent;
 
     if( profile == null || loading ) {
@@ -36,7 +39,12 @@ class Dashboard extends Component {
             {/* <ProfileButtons /> */}
             {/* <Experience experience={profile.experience}/> 
             <Education education={profile.education} />  */}
+
+            this would be where the posts are. 
+            {/* <PostFeed post={user.posts} /> */}
             <div style={{ marginBottom: '60px'}} />
+              
+              <Link to="/post" className="" ><button className="btn btn-success">New Post</button></Link>
               <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger"> Delete My Account</button>
           </div>
         )
@@ -46,7 +54,7 @@ class Dashboard extends Component {
           <div>
             <p className="lead text-muted"> Welcome { user.name }</p>
             <p>You have not yet setup a profile, please add some info</p>
-            <Link to="#" className="btn btn-lg btn-info">Create Profile</Link>
+            <Link to="/create-profile" className="btn btn-lg btn-info">Create Profile</Link>
           </div>
         )
       }

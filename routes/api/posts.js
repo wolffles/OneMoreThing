@@ -34,6 +34,36 @@ router.get('/:id', (req,res)=>{
 //@route    POST api/posts
 //@desc     Creates a post
 //@access   private
+router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
+  const { errors, isValid } = validatePostInput(req.body);
+
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  // Profile.findOne({ user: req.user.id }).then(pro => { 
+  //   console.log(pro._id)
+  //   pro.save((err) => { newPost = new Post({
+  //       title: req.body.title,
+  //       body: req.body.body,
+  //       img: req.body.img,
+  //     });
+  //     newPost.save().then(post => res.json(post));}
+  //   )
+  // });
+  
+  // find out how to update profile array as well
+   Profile.findOne({ user: req.user.id }).then(pro => {
+    newPost = new Post({
+      title: req.body.title,
+      body: req.body.body,
+      img: req.body.img,
+    });
+    pro.posts.push(newPost._id)
+    newPost.save().then(post => res.json(post))
+   })
+})
+
 // router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
 //   const { errors, isValid } = validatePostInput(req.body);
 
@@ -43,45 +73,19 @@ router.get('/:id', (req,res)=>{
 //   }
 //   Profile.findOne({ user: req.user.id }).then(pro => { 
 //     console.log(pro._id)
-//     pro.save((err) => { newPost = new Post({
+//     if(!pro) {
+//       return res.status(404).json({
+//         messsage: "Product not found"
+//       });
+//     }
+//     const newPost = new Post({
 //         title: req.body.title,
 //         body: req.body.body,
 //         img: req.body.img,
-//         user: req.user._id,
-//         author: pro._id
 //       });
-//       newPost.save().then(post => res.json(post));}
-//     )
+//       newPost.save().then(post => res.json(post));
+//     })
 //   });
-  
-//   // find out how to update profile array as well
-//   //  Profile.findOne({ user: req.user.id }).then(pro => {
-//   //   pro.posts.push(newPost)
-//   //   pro.save().then(res => console.log("i was saved"))
-//   //  })
-// })
-router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
-  const { errors, isValid } = validatePostInput(req.body);
-
-  // Check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-  Profile.findOne({ user: req.user.id }).then(pro => { 
-    console.log(pro._id)
-    if(!pro) {
-      return res.status(404).json({
-        messsage: "Product not found"
-      });
-    }
-    const newPost = new Post({
-        title: req.body.title,
-        body: req.body.body,
-        img: req.body.img,
-      });
-      newPost.save().then(post => res.json(post));
-    })
-  });
 
 
 //@route    POST api / posts
@@ -104,7 +108,7 @@ router.post('/:id', passport.authenticate('jwt', { session: false }), (req, res)
         post.title= req.body.title;
         post.body= req.body.body;
         post.img= req.body.img;
-        post.save().then(post => res.json(post));
+        post.save().exec().then(post => res.json(post));
       });
     });
 })

@@ -35,7 +35,6 @@ class PostForm extends Component {
             body: this.state.body,
             name: user.name,
             avatar: user.avatar
-            profile_id: 
         };
 
         this.props.addPost(newPost, this.props.history);

@@ -20,9 +20,8 @@ A web application that allows a user to post an article online.
 
 
 # Things to do:
-
-* find a way to return the posts 
-* refactor
+* Post route doesn't save the "oid" to the posts array 
+* when querying for profile.posts, it returns [] even if there are oid stored. (populate doesn't seem to populate them correctly.)
 create Front end for Dashboard to profiles. 
 * userlogin
   - action: to post

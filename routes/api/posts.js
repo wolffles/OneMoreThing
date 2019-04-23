@@ -57,10 +57,12 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
     newPost = new Post({
       title: req.body.title,
       body: req.body.body,
-      img: req.body.img,
+      img: req.body.img
     });
     pro.posts.push(newPost._id)
-    newPost.save().then(post => res.json(post))
+    pro.save().then(pro => {
+      newPost.save().then(post => res.json(post))
+    })
    })
 })
 

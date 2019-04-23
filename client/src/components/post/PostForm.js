@@ -11,7 +11,6 @@ class PostForm extends Component {
         this.state = {
             title: '',
             body: '',
-            profile_id:'',
             errors: {}
         };
 

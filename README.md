@@ -22,6 +22,7 @@ A web application that allows a user to post an article online.
 # Things to do:
 * Post route doesn't save the "oid" to the posts array 
 * when querying for profile.posts, it returns [] even if there are oid stored. (populate doesn't seem to populate them correctly.)
+  - option 1: you ignore the relation for now and keep the references as one sided, and populate when nessesary
 create Front end for Dashboard to profiles. 
 * userlogin
   - action: to post

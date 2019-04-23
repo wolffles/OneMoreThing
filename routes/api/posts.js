@@ -41,18 +41,7 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
-  // Profile.findOne({ user: req.user.id }).then(pro => { 
-  //   console.log(pro._id)
-  //   pro.save((err) => { newPost = new Post({
-  //       title: req.body.title,
-  //       body: req.body.body,
-  //       img: req.body.img,
-  //     });
-  //     newPost.save().then(post => res.json(post));}
-  //   )
-  // });
   
-  // find out how to update profile array as well
    Profile.findOne({ user: req.user.id }).then(pro => {
     newPost = new Post({
       title: req.body.title,
@@ -65,29 +54,6 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
     })
    })
 })
-
-// router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
-//   const { errors, isValid } = validatePostInput(req.body);
-
-//   // Check validation
-//   if (!isValid) {
-//     return res.status(400).json(errors);
-//   }
-//   Profile.findOne({ user: req.user.id }).then(pro => { 
-//     console.log(pro._id)
-//     if(!pro) {
-//       return res.status(404).json({
-//         messsage: "Product not found"
-//       });
-//     }
-//     const newPost = new Post({
-//         title: req.body.title,
-//         body: req.body.body,
-//         img: req.body.img,
-//       });
-//       newPost.save().then(post => res.json(post));
-//     })
-//   });
 
 
 //@route    POST api / posts

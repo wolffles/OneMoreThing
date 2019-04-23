@@ -3,19 +3,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ProfileSchema = new mongoose.Schema({
-  user: [{
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'users'
-  }],
+  },
   handle: {
     type: String,
     required: true,
     max: 40
   },
-  posts: [{
+  posts: [
+    {
       ref: 'posts',
       type: Schema.Types.ObjectId
-    }],
+    }
+  ],
   websites: [
     {
       name: {

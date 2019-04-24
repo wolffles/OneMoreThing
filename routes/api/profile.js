@@ -71,13 +71,14 @@ router.post('/',
 );
 
 
+
 //@route    GET api/profile/
 //@desc     gets current user's profile
 //@access   private
 router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   const errors = {};
   Profile.findOne({ user: req.user.id })
-    .populate('posts', ['title', 'body', 'date', 'id', 'img', 'likes'])
+    .populate({path:'posts', select: ['title', 'body', 'date', 'id', 'img', 'likes'], populate: {path: "profile", select: "handle"}})
     .populate('user', ['name', 'avatar'])
     .then(profile => {
       if (!profile) {

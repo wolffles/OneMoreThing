@@ -23,9 +23,8 @@ class Dashboard extends Component {
 
   render() {
     const { user } = this.props.auth;
-    const { profile, loading } = this.props.profile;
+    const { posts, profile, loading } = this.props.profile;
     console.log(profile)
-    console.log("user",user)
     let dashboardContent;
 
     if( profile == null || loading ) {
@@ -40,8 +39,8 @@ class Dashboard extends Component {
             {/* <Experience experience={profile.experience}/> 
             <Education education={profile.education} />  */}
 
-            this would be where the posts are. 
-            {/* <PostFeed post={user.posts} /> */}
+            Current Posts
+            <PostFeed posts={profile.posts} profile={profile} />
             <div style={{ marginBottom: '60px'}} />
               
               <Link to="/post" className="" ><button className="btn btn-success">New Post</button></Link>

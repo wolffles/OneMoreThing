@@ -10,13 +10,13 @@ class PostItem extends Component {
         this.props.deletePost(id);
     }
 
-    onLikeClick(id) {
-        this.props.addLike(id);
-    }
+    // onLikeClick(id) {
+    //     this.props.addLike(id);
+    // }
 
-    onUnlikeClick(id) {
-        this.props.removeLike(id);
-    }
+    // onUnlikeClick(id) {
+    //     this.props.removeLike(id);
+    // }
 
     findUserLike(likes) {
         const { auth } = this.props;
@@ -26,10 +26,10 @@ class PostItem extends Component {
             return false;
         }
     }
-
+        
     render() {
         const { post, auth, showActions } = this.props;
-
+        console.log(this.props)
         return (
             <div className="card card-body mb-3">
                 <div className="row">
@@ -42,14 +42,14 @@ class PostItem extends Component {
                             />
                         </a>
                         <br />
-                        <p className="text-center">{post.name}</p>
+                        <p className="text-center">{post.title}</p>
                     </div>
                     <div className="col-md-10">
-                        <p className="lead">{post.text}</p>
+                        <p className="lead">{post.body}</p>
                         {showActions ? (
                             <span>
                                 <button
-                                    onClick={this.onLikeClick.bind(this, post._id)}
+                                    // onClick={this.onLikeClick.bind(this, post._id)}
                                     type="button"
                                     className="btn btn-light mr-1"
                                 >
@@ -61,7 +61,7 @@ class PostItem extends Component {
                                     <span className="badge badge-light">{post.likes.length}</span>
                                 </button>
                                 <button
-                                    onClick={this.onUnlikeClick.bind(this, post._id)}
+                                    // onClick={this.onUnlikeClick.bind(this, post._id)}
                                     type="button"
                                     className="btn btn-light mr-1"
                                 >
@@ -94,8 +94,8 @@ PostItem.defaultProps = {
 
 PostItem.propTypes = {
     deletePost: PropTypes.func.isRequired,
-    addLike: PropTypes.func.isRequired,
-    removeLike: PropTypes.func.isRequired,
+    // addLike: PropTypes.func.isRequired,
+    // removeLike: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
 };

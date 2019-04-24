@@ -46,18 +46,20 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
     newPost = new Post({
       title: req.body.title,
       body: req.body.body,
-      img: req.body.img
+      img: req.body.img,
+      profile: pro._id,
+      user: req.user._id
     });
     pro.posts.push(newPost._id)
     pro.save().then(pro => {
       newPost.save().then(post => res.json(post))
     })
-   })
+  })
 })
 
 
-//@route    POST api / posts
-//@desc     Update a post
+//@route    POST api/posts/:id
+//@desc     Update a post using id param
 //@access   private
 router.post('/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validatePostInput(req.body);
@@ -70,13 +72,15 @@ router.post('/:id', passport.authenticate('jwt', { session: false }), (req, res)
     Post.findById(req.params.id)
       .then(post => {
         //validating post owner
-        if (post.user.toString() !== req.user.id) {
-          return res.status(401).json({ notauthorized: "User is not authorized" });
-        }
+        // if (post.user.toString() !== req.user.id) {
+        //   return res.status(401).json({ notauthorized: "User is not authorized" });
+        // }
         post.title= req.body.title;
         post.body= req.body.body;
         post.img= req.body.img;
-        post.save().exec().then(post => res.json(post));
+        post.profile= profile._id;
+        post.user= req.user._id;
+        post.save().then(post => res.json(post));
       });
     });
 })

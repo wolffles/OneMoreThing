@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 });
 
 //@route  GET api/posts
-//@desc   gets a post by id
+//@desc   get a post by Id
 //@access Public
 router.get('/:id', (req,res)=>{
   Post.findById(req.params.id)
@@ -48,7 +48,8 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
       body: req.body.body,
       img: req.body.img,
       profile: pro._id,
-      user: req.user._id
+      user: req.user._id,
+      author: req.body.author
     });
     pro.posts.push(newPost._id)
     pro.save().then(pro => {
@@ -80,6 +81,7 @@ router.post('/:id', passport.authenticate('jwt', { session: false }), (req, res)
         post.img= req.body.img;
         post.profile= profile._id;
         post.user= req.user._id;
+        post.author= req.body.author;
         post.save().then(post => res.json(post));
       });
     });

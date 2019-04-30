@@ -10,6 +10,10 @@ const PostSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'profile'
   },
+  author: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,

@@ -32,7 +32,7 @@ class PostForm extends Component {
         const newPost = {
             title: this.state.title,
             body: this.state.body,
-            name: user.name,
+            author: user.name,
             avatar: user.avatar
         };
 
@@ -44,7 +44,7 @@ class PostForm extends Component {
     }
 
     render() {
-        const { errors, profile } = this.state;
+        const { errors } = this.state;
 
         return (
             <div className="post-form mb-3">

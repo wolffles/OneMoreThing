@@ -3,7 +3,8 @@ import {
     GET_POSTS,
     GET_POST,
     DELETE_POST,
-    POST_LOADING
+    POST_LOADING,
+    UPDATE_POST
 } from '../actions/types';
 
 const initialState = {
@@ -35,6 +36,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 posts: [action.payload, ...state.posts]
+            };
+        case UPDATE_POST:
+            return {
+                ...state,
+                post: action.payload
             };
         case DELETE_POST:
             return {

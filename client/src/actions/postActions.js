@@ -7,7 +7,8 @@ import {
     GET_POSTS,
     GET_POST,
     POST_LOADING,
-    DELETE_POST
+    DELETE_POST,
+    UPDATE_POST
 } from './types';
 
 // Add Post
@@ -15,6 +16,11 @@ export const addPost = (postData, history) => dispatch => {
     dispatch(clearErrors());
     axios
         .post('/api/posts', postData)
+        .then(res =>
+            dispatch({
+                type: ADD_POST,
+                payload: res.data
+            }))
         .then(res => history.push('/dashboard'))
         .catch(err =>
             dispatch({
@@ -63,6 +69,22 @@ export const getPost = id => dispatch => {
             })
         );
 };
+
+//Update Post
+export const updatePost = (id, postData, history) => dispatch => {
+    axios.post(`/api/posts/${id}`, postData)
+        .then(res => dispatch({
+            type: UPDATE_POST,
+            payload: res.data
+        }))
+        .then(res => history.push('/dashboard'))
+        .catch(err =>
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        );
+}
 
 // Delete Post
 export const deletePost = id => dispatch => {

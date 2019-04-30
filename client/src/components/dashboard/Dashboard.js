@@ -23,8 +23,7 @@ class Dashboard extends Component {
 
   render() {
     const { user } = this.props.auth;
-    const { posts, profile, loading } = this.props.profile;
-    console.log(profile)
+    const { profile, loading } = this.props.profile;
     let dashboardContent;
 
     if( profile == null || loading ) {

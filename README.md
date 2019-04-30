@@ -1,7 +1,6 @@
 # OneMoreThing
 A web application that allows a user to post an article online.
 
-
 ## user stories. 
 (private)
 * after login redirect to Dashboard.
@@ -20,7 +19,8 @@ A web application that allows a user to post an article online.
 
 
 # Things to do:
-update the posts to have handle (save the posts again using edit)
+* remove all console logs and unnessasary code in open tabs
+* push tomorrow
 create Front end for Dashboard to profiles. 
 * userlogin
   - action: to post (done)

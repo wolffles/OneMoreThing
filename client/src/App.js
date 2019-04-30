@@ -9,11 +9,12 @@ import PrivateRoute from './components/common/PrivateRoute';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
-import Login from './components/auth/Login'
-import Register from './components/auth/Register'
-import Dashboard from './components/dashboard/Dashboard'
-import PostForm from './components/post/PostForm'
-import CreateProfile from './components/create-profile/CreateProfile'
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import Dashboard from './components/dashboard/Dashboard';
+import PostForm from './components/post/PostForm';
+import EditPost from './components/post/EditPost';
+import CreateProfile from './components/create-profile/CreateProfile';
 
 import './App.css';
 
@@ -32,7 +33,12 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
-              <Route exact path='/post' component={PostForm}/>
+              <Switch>
+                <PrivateRoute exact path='/post' component={PostForm}/>
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path='/edit-post' component={EditPost}/>
+              </Switch>
               <Switch>
                 <PrivateRoute exact path="/create-profile" component={CreateProfile} />
               </Switch>

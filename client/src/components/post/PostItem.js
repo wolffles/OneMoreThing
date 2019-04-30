@@ -29,11 +29,10 @@ class PostItem extends Component {
         
     render() {
         const { post, auth, showActions } = this.props;
-        console.log(this.props)
         return (
             <div className="card card-body mb-3">
                 <div className="row">
-                    <div className="col-md-2">
+                    {/* <div className="col-md-2">
                         <a href="profile.html">
                             <img
                                 className="rounded-circle d-none d-md-block"
@@ -42,9 +41,10 @@ class PostItem extends Component {
                             />
                         </a>
                         <br />
-                        <p className="text-center">{post.title}</p>
-                    </div>
+                        <p className="text-center">""</p>
+                    </div> */}
                     <div className="col-md-10">
+                        <p className="lead">{post.title}</p>
                         <p className="lead">{post.body}</p>
                         {showActions ? (
                             <span>
@@ -67,9 +67,7 @@ class PostItem extends Component {
                                 >
                                     <i className="text-secondary fas fa-thumbs-down" />
                                 </button>
-                                <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
-                                    Comments
-                </Link>
+                                <Link to={{pathname: `/edit-post`, state: {post: post}}} className="btn btn-info mr-1">Edit</Link>
                                 {post.user === auth.user.id ? (
                                     <button
                                         onClick={this.onDeleteClick.bind(this, post._id)}

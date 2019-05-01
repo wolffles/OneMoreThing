@@ -7,10 +7,8 @@ import Spinner from '../common/Spinner';
 import { addPost, deletePost, getPosts, getPost} from '../../actions/postActions';
 
 // import ProfileButtons from './ProfileButtons'
-// import Experience from './Experience'
-// import Education from './Education'
 import PostFeed from '../post/PostFeed'
-import createprofile from "../create-profile/CreateProfile"
+// import createprofile from "../create-profile/CreateProfile"
 
 class Dashboard extends Component {
   componentDidMount(){
@@ -35,8 +33,6 @@ class Dashboard extends Component {
           <div>
             <p className="lead text-muted"> Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link></p>
             {/* <ProfileButtons /> */}
-            {/* <Experience experience={profile.experience}/> 
-            <Education education={profile.education} />  */}
 
             Current Posts
             <PostFeed posts={profile.posts} profile={profile} />

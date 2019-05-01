@@ -19,13 +19,17 @@ A web application that allows a user to post an article online.
 
 
 # Things to do:
-* remove all console logs and unnessasary code in open tabs
-* push tomorrow
-create Front end for Dashboard to profiles. 
+* guest actions
+  - show posts feed link
+  - user: create a bio, websites, and others. 
+  - view profile display
+  - 
 * userlogin
   - action: to post (done)
-  - action: edit post
-  - display: user.posts
-  - action: show post
-  - action: edit profile
+  - action: edit post (done)
+  - display: user.posts (done)
+  - action: show post (done)
+  - action: edit profile (done)
+
+
 

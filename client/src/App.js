@@ -15,7 +15,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import PostForm from './components/post/PostForm';
 import EditPost from './components/post/EditPost';
 import CreateProfile from './components/create-profile/CreateProfile';
-
+import Feed from './components/feed/Feed';
 import './App.css';
 
 class App extends Component {
@@ -30,6 +30,7 @@ class App extends Component {
             <div className="container">
               <Route exact path='/register' component={Register}/>
               <Route exact path='/login' component={Login}/>
+              <Route exact path='/feed' component={Feed}/>
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>

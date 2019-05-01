@@ -5,7 +5,11 @@ import PostItem from './PostItem';
 class PostFeed extends Component {
     render() {
         const { posts } = this.props;
-        return posts.map(post => <PostItem key={post._id} post={post} />);
+        if (posts.length < 1) {
+            return <div> Nothing Here! </div>
+        }else{
+            return posts.map(post => <PostItem key={post._id} post={post} />).reverse();
+        }
     }
 }
 

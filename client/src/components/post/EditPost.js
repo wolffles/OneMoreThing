@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import TextFieldGroup from '../common/TextFieldGroup';
-import { getPost, updatePost } from '../../actions/postActions';
+import { getPost, updatePost, deletePost } from '../../actions/postActions';
 import isEmpty from '../../validation/is-empty';
+
 
 class EditPost extends Component {
     constructor(props) {
@@ -12,11 +13,13 @@ class EditPost extends Component {
         this.state = {
             title: '',
             body: '',
-            errors: {}
+            errors: {},
+            post_id: ''
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onDeleteClick = this.onDeleteClick.bind(this);
     }
 
     componentDidMount() {
@@ -27,7 +30,8 @@ class EditPost extends Component {
         post.body = !isEmpty(post.body) ? post.body : "";
         this.setState({
           title: post.title,
-          body: post.body
+          body: post.body,
+          post_id: post._id
         })
       }
     }
@@ -43,7 +47,6 @@ class EditPost extends Component {
         const { _id } = this.props.location.state.post
         // dont need user because pulls user from the original post validates with authentication
         const { user } = this.props.auth;
-        console.log(user.name)
         const newPost = {
             title: this.state.title,
             body: this.state.body,
@@ -58,11 +61,19 @@ class EditPost extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    onDeleteClick() {
+        console.log(this.state.post_id)
+        this.props.deletePost(this.state.post_id);
+    }
+
     render() {
         const { errors } = this.state;
 
         return (
             <div className="post-form mb-3">
+                <div>
+                    <button onClick={() => {this.props.history.goBack()}}>back</button>
+                </div>
                 <div className="card card-info">
                     <div className="card-header bg-info text-white">Create a New Post</div>
                     <div className="card-body">
@@ -88,6 +99,7 @@ class EditPost extends Component {
                             <button type="submit" className="btn btn-dark">
                                 Submit
                             </button>
+                            <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger"> Delete </button>
                         </form>
                     </div>
                 </div>
@@ -112,4 +124,4 @@ const mapStateToProps = state => ({
     post: state.post
 });
 
-export default connect(mapStateToProps, { updatePost, getPost })(EditPost);
+export default connect(mapStateToProps, { updatePost, getPost, deletePost })(EditPost);

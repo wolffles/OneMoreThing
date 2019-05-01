@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import PostFeed from '../post/PostFeed';
+import FeedList from './FeedList';
 import {getPosts} from '../../actions/postActions';
 import Spinner from '../common/Spinner'
 class Feed extends Component{
 
   componentDidMount(){
     this.props.getPosts();
-
   }
  
   render() {
@@ -18,11 +17,12 @@ class Feed extends Component{
     if (posts === null || loading) {
       postContent = <Spinner />;
     } else {
-      postContent = <PostFeed posts={posts} />;
+      postContent = <FeedList posts={posts} />;
     }
 
     return (
       <div className="feed">
+        <h1> Feed </h1>
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -44,4 +44,3 @@ const mapStateToProps = state =>({
   post: state.post
 })
 export default connect(mapStateToProps, {getPosts})(Feed);
-// export default Feed;

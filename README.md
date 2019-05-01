@@ -19,8 +19,12 @@ A web application that allows a user to post an article online.
 
 
 # Things to do:
+* advanced
+  - allow for markdown and images to be displayed.
+  - make the feed cut off after a certain amount.
+  - add summary or description for the app.
 * guest actions
-  - show posts feed link
+  - show posts feed link (done)
   - user: create a bio, websites, and others. 
   - view profile display
   - 

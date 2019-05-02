@@ -49,7 +49,8 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
       img: req.body.img,
       profile: pro._id,
       user: req.user._id,
-      author: req.body.author
+      author: req.body.author,
+      avatar: req.user.avatar
     });
     pro.posts.push(newPost._id)
     pro.save().then(pro => {
@@ -82,6 +83,7 @@ router.post('/:id', passport.authenticate('jwt', { session: false }), (req, res)
         post.profile= profile._id;
         post.user= req.user._id;
         post.author= req.body.author;
+        post.avatar=req.user.avatar;
         post.save().then(post => res.json(post));
       });
     });

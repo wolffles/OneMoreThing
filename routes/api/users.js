@@ -136,8 +136,7 @@ router.get('/current',
     res.json({
       id: req.user.id,
       name: req.user.name,
-      email: req.user.email,
-      posts: req.user.posts
+      email: req.user.email
     })
   })
 

@@ -36,9 +36,9 @@ class FeedItem extends Component {
                       src={post.avatar}
                       alt=""
                   />
+                  {console.log(post.avatar)}
               </a>
               <br />
-              {console.log(post.author)}
               <p className="text-center">{post.author}</p>
           </div>
           <div className="col-md-10">

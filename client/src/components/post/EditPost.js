@@ -5,7 +5,7 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import TextFieldGroup from '../common/TextFieldGroup';
 import { getPost, updatePost, deletePost } from '../../actions/postActions';
 import isEmpty from '../../validation/is-empty';
-
+import { Link, withRouter } from "react-router-dom";
 
 class EditPost extends Component {
     constructor(props) {
@@ -70,37 +70,44 @@ class EditPost extends Component {
         const { errors } = this.state;
 
         return (
-            <div className="post-form mb-3">
-                <div>
-                    <button onClick={() => {this.props.history.goBack()}}>back</button>
-                </div>
-                <div className="card card-info">
-                    <div className="card-header bg-info text-white">Create a New Post</div>
-                    <div className="card-body">
-                        <form onSubmit={this.onSubmit}>
-                            <div className="form-group">
-                                <TextFieldGroup
-                                    placeholder="Enter Title"
-                                    name="title"
-                                    value={this.state.title}
-                                    onChange={this.onChange}
-                                    error={errors.title}
-                                />
+            <div className="EditProfile">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-8 m-auto">
+                                {/* <button onClick={() => {this.props.history.goBack()}}>back</button> */}
+                                <Link to="/dashboard" className="btn btn-light">
+                                    Go Back
+                                </Link>
+                            <div className="card card-info">
+                                <div className="card-header bg-info text-white">Create a New Post</div>
+                                <div className="card-body">
+                                    <form onSubmit={this.onSubmit}>
+                                        <div className="form-group">
+                                            <TextFieldGroup
+                                                placeholder="Enter Title"
+                                                name="title"
+                                                value={this.state.title}
+                                                onChange={this.onChange}
+                                                error={errors.title}
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <TextAreaFieldGroup
+                                                placeholder="Body Text"
+                                                name="body"
+                                                value={this.state.body}
+                                                onChange={this.onChange}
+                                                error={errors.body}
+                                            />
+                                        </div>
+                                        <button type="submit" className="btn btn-dark">
+                                            Submit
+                                        </button>
+                                        <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger"> Delete </button>
+                                    </form>
+                                </div>
                             </div>
-                             <div className="form-group">
-                                <TextAreaFieldGroup
-                                    placeholder="Body Text"
-                                    name="body"
-                                    value={this.state.body}
-                                    onChange={this.onChange}
-                                    error={errors.body}
-                                />
-                            </div>
-                            <button type="submit" className="btn btn-dark">
-                                Submit
-                            </button>
-                            <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger"> Delete </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -124,4 +131,4 @@ const mapStateToProps = state => ({
     post: state.post
 });
 
-export default connect(mapStateToProps, { updatePost, getPost, deletePost })(EditPost);
+export default connect(mapStateToProps, { updatePost, getPost, deletePost })(withRouter(EditPost));

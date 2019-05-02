@@ -31,7 +31,7 @@ class Navbar extends Component {
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link" to="/feed">
+        <Link className="nav-link" to="/feed">
             Post Feed
         </Link>
         </li>  
@@ -53,6 +53,9 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
+                <Link className="nav-link" to="/feed">
+                  Post Feed
+                </Link>
                 {/* <Link className="nav-link" to="/profiles"> Developers </Link>*/}
               </li>
             </ul>
